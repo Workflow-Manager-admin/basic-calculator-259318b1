@@ -1,13 +1,16 @@
 /* CSS Variables for Theme Management */
 :root {
-  /* Light theme colors */
+  /* Light theme colors (custom for calculator spec) */
   --bg-primary: #ffffff;
   --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --text-primary: #222d3b;
+  --border-color: #ececec;
+  --button-bg: #f6f9fc;
+  --button-text: #1b2430;
+  --primary: #1976d2;
+  --accent: #fbc02d;
+  --secondary: #ffffff;
+  --shadow: 0 2px 12px 0 #e2e2e2;
 }
 
 [data-theme="dark"] {
@@ -52,6 +55,132 @@
   transition: background-color 0.3s ease;
   position: relative;
 }
+
+/* === Calculator Styles Added === */
+.calculator-app {
+  background: var(--bg-primary);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Center and constrain the calculator card */
+.calc-outer {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.calc-card {
+  background: var(--secondary);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+}
+
+.calc-display {
+  background: var(--bg-secondary);
+  color: var(--primary);
+  padding: 1.2rem 1rem 1.2rem 0.7rem;
+  border-radius: 12px;
+  min-height: 54px;
+  font-size: 2.25rem;
+  text-align: right;
+  margin-bottom: 1.2rem;
+  letter-spacing: 1px;
+  box-shadow: 0 1px 4px #e8e8e8;
+  border: none;
+  outline: none;
+  overflow-x: auto;
+}
+
+.calc-grid {
+  width: 100%;
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(4, 60px);
+  grid-template-rows: repeat(4, 56px);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Buttons Base */
+.calc-btn {
+  font-size: 1.22rem;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 1.5px 2px #f4f6f6;
+  transition: background .08s, color .13s;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calc-btn:active {
+  background: #e0e6eb;
+}
+
+.calc-btn.operator {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.calc-btn.accent {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+.calc-btn.secondary {
+  background: #f1f3f4;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 410px) {
+  .calc-card {
+    max-width: 97vw;
+    padding: 1rem 2vw;
+  }
+  .calc-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 40px);
+    gap: 0.5rem;
+  }
+  .calc-display {
+    font-size: 1.14rem;
+    min-height: 36px;
+    padding: 0.65rem 0.2rem 0.65rem 0.4rem;
+  }
+}
+
+.calc-footer {
+  margin: 1.6rem 0 0.5rem 0;
+  font-size: 0.97rem;
+  color: #b0b4be;
+  text-align: center;
+}
+
+/* Visually hide scrollbars on number display for aesthetics */
+.calc-display::-webkit-scrollbar { display: none; }
 
 .App-link {
   color: var(--text-secondary);
